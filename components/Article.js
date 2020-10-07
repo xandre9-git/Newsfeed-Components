@@ -114,3 +114,62 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articleMaker = (article, parentNode) => {
+  const div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const span = document.createElement('span');
+  const p1 = document.createElement('p')
+  const p2 = document.createElement('p')
+  const p3 = document.createElement('p')
+
+  div.classList.add('article');
+  date.classList.add('date');
+  span.classList.add('expandButton');
+  span.textContent = '+';
+
+  const titleTextNode = document.createTextNode(article.title);
+  const dateTextNode = document.createTextNode(article.date);
+  const firstParagraphTextNode = document.createTextNode(article.firstParagraph);
+  const secondParagraphTextNode = document.createTextNode(article.secondParagraph);
+  const thirdParagraphTextNode = document.createTextNode(article.thirdParagraph);
+  
+
+  date.appendChild(dateTextNode)
+  h2.appendChild(titleTextNode)
+  p1.appendChild(firstParagraphTextNode);
+  p2.appendChild(secondParagraphTextNode); 
+  p3.appendChild(thirdParagraphTextNode);
+  div.appendChild(h2);
+  div.appendChild(date);
+  div.appendChild(p1);
+  div.appendChild(p2);
+  div.appendChild(p3);
+  div.appendChild(span);
+  parentNode.appendChild(div)
+
+  span.addEventListener('click', (event) => {
+    div.classList.toggle('article-open')
+ });
+
+}
+console.log(articleMaker);
+
+const div = document.querySelector('.articles');
+console.log(div)
+
+// articleMaker(data[1], div);
+
+// grab array, apply forEach loop to it. its paramater is the object which returns the articlemaker function which takes two args: arrary and parentnode (this case: div)
+// data.forEach((data) => articleMaker(data, div));
+
+
+data.push({title: 'How to Become a Software Engineer', 
+           date: 'Oct 6th, 2020',
+           firstParagraph: 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.',
+          secondParagraph:'Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. ',
+          thirdParagraph: 'Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.'})
+
+console.log(data)
+data.forEach((data) => articleMaker(data, div));
